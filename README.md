@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# CSV-W Builder Prototype
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This prototype is an attempt to present a user interface on top of existing linked data tooling to help users build CSV-Ws from their existing CSV data.
 
-## Available Scripts
+It will allow users to upload a CSV file along with (optional) accompanying metadata files, provide basic metadata about the overall dataset and then generate a form for them to complete to describe each column of their data. If the optional metadata files are provided, some of this form may be pre-populated with values drawn from the files.
 
-In the project directory, you can run:
+The [csvcubed](https://github.com/GSS-Cogs/csvcubed) tool will be used to generate the files comprising the CSV-W at the end.
+This prototype currently uses the [Gov.UK Prototype Kit](https://govuk-prototype-kit.herokuapp.com/docs) which facilitates rapid prototyping using
+the [Gov.UK Design System](https://design-system.service.gov.uk/get-started/). For details of frontend components being used see these resources.
 
-### `npm start`
+# Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+`npm install` to install dependencies
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`npm start-api` or `yarn start-api` to run the flask backend
+`npm start` or `yarn start` to run the site, which should report the website to be available on `http://localhost:3000`
 
-### `npm test`
+Changes will likely be needed primarily in the app/ directory, where app/views/ provide the HTML for each page, and app/routes.js the currently used logic behind each page submission.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Iteration Plan
 
-### `npm run build`
+As this is a prototype, we don't expect it to be the final home of some of this functionality and some problems like file management are being solved in other places. This work should focus on proving the user  experience of generating forms specific to the provided CSV and submitting metadata programatically to csvcubed.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Initially, aiming for a minimum viable demo.
+Only most basic behaviour in place, but running in a local server manner:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- User can 'upload' a CSV file, which is stored on the local server
+- User can provide metadata fields for dataset
+- User is presented metadata fields for each column
+    - This may initially take the shape of one very long form, the UX can be iterated separately
+- User can submit metadata form, and csvcubed is called
+- Results of csvcubed are stored on the local server
+- Links to the resultant files are visible to the user via the interface
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Then, provide initial metadata
+The optional qube-config.json file can be provided and the values used to inform the journey:
 
-### `npm run eject`
+- User can 'upload' the qube-config.json file
+- JSON file can be interpretted, and impact the form shown
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Results should be submitted and presented the same
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Moving beyond prototype
+Once these behaviours are in place, the prototype can be used to demonstrate the ability of csvcubed
+to those who would not be able to install the tool directly and also for user testing to ensure the 
+journey is straightforward for users.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This CSV-W Builder may then evolve into a part of the [dd-cms](https://github.com/GSS-Cogs/dd-cms) codebase
+or may find a home as an independent tool. Depending on which direction we take at that point, the 
+file upload components and error handling may need further work or may be impacted by the codebase it 
+moves to.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
