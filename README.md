@@ -13,6 +13,7 @@ the [Gov.UK Design System](https://design-system.service.gov.uk/get-started/). F
 `npm install` to install dependencies
 
 `npm start-api` or `yarn start-api` to run the flask backend
+
 `npm start` or `yarn start` to run the site, which should report the website to be available on `http://localhost:3000`
 
 Changes will likely be needed primarily in the app/ directory, where app/views/ provide the HTML for each page, and app/routes.js the currently used logic behind each page submission.
